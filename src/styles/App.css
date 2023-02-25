@@ -1,0 +1,63 @@
+.airNav{
+    background-color: #0c0c54 !important;
+}
+#imagecontainer {
+    background: url("https://i.pinimg.com/originals/62/32/5f/62325f515130190c4bb44f964b18f125.jpg")repeat-x;
+    border: 1px solid;
+    height: 100%;
+
+    border: 1px solid;
+    max-width: -webkit-fill-available;
+    
+    overflow-y: scroll;
+    
+    
+
+    
+    
+
+  }
+ 
+    #Player {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding-top: 30%;
+        object-fit: contain;
+    }
+    #player video {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
+    .overlayText {
+        position: absolute;
+        top: 140px;
+        left: 183px;
+        width: 100vh;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+   .div {
+    display: block;
+
+    }
+    .video {
+        object-fit: contain;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+    }
+    .teaserbox {
+        position: relative;
+        /* width: 90%; */
+        width: 60%;
+        /* margin: auto; */
+        margin: 0 auto;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
