@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Button, Card, Container, Spinner } from "react-bootstrap";
 import SearchContext from "./Context/SearchContext";
 import Flight from "./Flight";
+import SearchFlight from "./SearchFlight";
 
 function Home() {
   const { Flights, setFlights, from, to, isLoader, setIsLoader } =
@@ -23,6 +24,8 @@ function Home() {
 
       setFlights(JSON.parse(JSON.stringify(result)));
       setIsLoader(false);
+      setTo("");
+      setFrom("");
       console.log("flight is", result);
     }
   }
@@ -52,7 +55,9 @@ function Home() {
         id="imagecontainer"
         className="w-100 justify-content-center flex-col "
       >
-        <h2 className="align-self-center">Flights</h2>
+        <h2 className=" text-sm-center text-white">
+          {!to ? "Flights" : `Flights From ${from} to ${to}`}
+        </h2>
         <div className="flex-col justify-content-center ">
           {Flights.map((flight) => {
             return <Flight flight={flight} />;

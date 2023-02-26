@@ -15,18 +15,21 @@ import SearchContext from "./Context/SearchContext";
 
 function AirNavBar() {
   const navigate = useNavigate();
-  const { userName, isLoggedin, setIsLoggedin } = useContext(SearchContext);
+  const { userName, isLoggedin, setIsLoggedin, setTo, setFrom } =
+    useContext(SearchContext);
   return (
     <>
       <Navbar
         className="airNav"
         bg="light"
         expand="lg"
-        style={{ backgroundColor: "#0c0c54 !important" }}
+        style={{ backgroundColor: "#2f2f8d !important" }}
       >
         <Container fluid>
           <Navbar.Brand
             onClick={() => {
+              setTo("");
+              setFrom("");
               navigate("/");
             }}
           >
@@ -49,14 +52,20 @@ function AirNavBar() {
                   navigate("/SearchFlight");
                 }}
               >
-                <h6> Flights</h6>
+                <h6
+                  className="b bg p-sm-2"
+                  style={{ backgroundColor: "black", borderRadius: "20px" }}
+                >
+                  {" "}
+                  Flights
+                </h6>
               </Nav.Link>
             </Nav>
             <Form className="d-flex">
               <div className="flex-col">
                 <Button variant="outline-success">
                   <ImUser
-                    alt="click to log out"
+                    className="text-warning"
                     onClick={() => {
                       isLoggedin ? setIsLoggedin(false) : navigate("/Login");
                     }}

@@ -23,9 +23,8 @@ function Flight({ flight }) {
     );
 
     return {
-      date: arrivalDateObj.getDate(),
-      hours: arrivalDateObj.getHours(),
-      minutes: arrivalDateObj.getMinutes(),
+      date: `${arrivalDateObj.getFullYear()}-${arrivalDateObj.getMonth()}-${arrivalDateObj.getDate()}`,
+      hours: arrivalDateObj.toLocaleTimeString("en-us"),
     };
   };
   const { from, to } = useContext(SearchContext);
@@ -38,6 +37,12 @@ function Flight({ flight }) {
     flight.departure.departureTime,
     flight.duration
   );
+  const returnArrivalTime = getArrivalTime(
+    flight.return.returnDate,
+    flight.return.returnTime,
+    flight.duration
+  );
+
   console.log("time is", arrivalTime);
   return (
     <>
@@ -45,8 +50,8 @@ function Flight({ flight }) {
         className="  card d-flex m-4 m-lg-auto mb-lg-4"
         style={{ width: "70%", backgroundColor: "white" }}
       >
-        <Card.Body className="d-flex justify-content-center">
-          <div className="d-flex justify-content-center">
+        <Card.Body className="card-body d-flex flex-wrap justify-content-center">
+          <div className="d-flex justify-content-center flex-wrap">
             <Card.Img
               className="d-flex align-self-center card-img d-flex"
               src={CompanyLogo[str]}
@@ -67,8 +72,8 @@ function Flight({ flight }) {
           </div>
           <div className="m-l-4 m-l-4 mx-md-auto align-self-xl-center">
             <h4>{flight.to}</h4>
-            <h5>{flight.departure.departureDate}</h5>
-            <h6>{flight.departure.departureTime}</h6>
+            <h5>{arrivalTime.date}</h5>
+            <h6>{arrivalTime.hours}</h6>
           </div>
           <div className="m-4 m-l-4 mx-md-auto d-flex align-self-xl-center">
             <h3 align="center">{flight.price}</h3>
@@ -93,7 +98,7 @@ function Flight({ flight }) {
           className="  card d-flex m-4 m-lg-auto mb-lg-4"
           style={{ width: "70%" }}
         >
-          <Card.Body className="d-flex justify-content-center">
+          <Card.Body className="card-body d-flex flex-wrap justify-content-center">
             <div className="d-flex justify-content-center">
               <Card.Img
                 className="d-flex align-self-center card-img d-flex"
@@ -102,7 +107,7 @@ function Flight({ flight }) {
               ></Card.Img>
               <h5 className=" align-self-xl-center m-2">{str}</h5>
             </div>
-            <div className=" m-l-4 m-l-4 mx-md-auto align-self-xl-center">
+            <div className="m-l-4 m-l-4 mx-md-auto align-self-xl-cente">
               <h4>{flight.to}</h4>
               <h5>{flight.return.returnDate}</h5>
               <h6>{flight.return.returnTime}</h6>
@@ -115,8 +120,8 @@ function Flight({ flight }) {
             </div>
             <div className="m-l-4 m-l-4 mx-md-auto align-self-xl-center">
               <h4>{flight.from}</h4>
-              <h5>{flight.return.returnDate}</h5>
-              <h6>{flight.return.returnTime}</h6>
+              <h5>{returnArrivalTime.date}</h5>
+              <h6>{returnArrivalTime.hours}</h6>
             </div>
             <div className="m-4 m-l-4 mx-md-auto d-flex justify-content-center ">
               <h3 align="center">{flight.price}</h3>
